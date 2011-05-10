@@ -10,7 +10,12 @@ gem 'sqlite3'
 gem "haml-rails", ">= 0.2"
 gem "inherited_resources", ">=1.1.2"
 
+group :development do
+  gem "watchr"
+end
+
 group :development, :test do
+  gem "spork"
   gem "factory_girl_rails"
   gem "rspec-rails", ">=2.0.1"
   platforms :mri_18 do
