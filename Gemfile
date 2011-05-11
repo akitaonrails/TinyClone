@@ -26,3 +26,7 @@ group :development, :test do
     gem "ruby-debug19", :require => 'ruby-debug'
   end
 end
+
+group :production do
+  gem "mysql2", "~> 0.2.7"
+end

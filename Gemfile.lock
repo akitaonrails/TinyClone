@@ -55,6 +55,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mysql2 (0.3.2)
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -120,6 +121,7 @@ PLATFORMS
 DEPENDENCIES
   factory_girl_rails
   haml-rails (>= 0.2)
+  mysql2
   rails (= 3.0.7)
   rest-client
   rspec-rails (>= 2.0.1)
