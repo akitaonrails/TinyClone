@@ -2,6 +2,12 @@ class Visit < ActiveRecord::Base
   belongs_to :link
   after_create :set_country
 
+  def self.register(identifier, ip)
+    link = Link.find(identifier)
+    link.visits << Visit.create(:ip => ip)
+    link.save
+  end
+
   def set_country
     return if self.country
     xml = RestClient.get "http://api.hostip.info/get_xml.php?ip=#{ip}"  

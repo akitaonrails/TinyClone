@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem "haml-rails", ">= 0.2"
 gem "rest-client", :require => "rest_client"
 gem "xml-simple", :require => "xmlsimple"
+gem 'delayed_job'
+gem 'rack-cache', :require => "rack/cache"
 
 group :development do
   gem "watchr"
