@@ -3,7 +3,7 @@ class CreateVisits < ActiveRecord::Migration
     create_table :visits do |t|
       t.string :ip
       t.string :country
-      t.references :link
+      t.string :link_id
 
       t.timestamps
     end

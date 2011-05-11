@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20110511001752) do
   create_table "visits", :force => true do |t|
     t.string   "ip"
     t.string   "country"
-    t.integer  "link_id"
+    t.string   "link_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

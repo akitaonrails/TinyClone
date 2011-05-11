@@ -3,6 +3,7 @@ class Visit < ActiveRecord::Base
   after_create :set_country
 
   def set_country
+    return if self.country
     xml = RestClient.get "http://api.hostip.info/get_xml.php?ip=#{ip}"  
     self.country = XmlSimple.xml_in(xml.to_s, { 'ForceArray' => false })['featureMember']['Hostip']['countryAbbrev']
     self.save
@@ -13,7 +14,7 @@ class Visit < ActiveRecord::Base
     data, labels = [], []
     visits.each do |visit| 
       data << visit[1]
-      labels << "#{visit[0].day}/#{visit[0].month}"
+      labels << (visit[0] =~ /(\d+)\-(\d+)\-(\d+)/ ? "#{$3.to_i}/#{$2.to_i}" : "")
     end
     "http://chart.apis.google.com/chart?chs=820x180&cht=bvs&chxt=x&chco=a4b3f4&chm=N,000000,0,-1,11&chxl=0:|#{labels.join('|')}&chds=0,#{data.sort.last+10}&chd=t:#{data.join(',')}"
   end
@@ -35,12 +36,12 @@ class Visit < ActiveRecord::Base
     visits = Link.find(identifier).visits.
       select("#{date_column} as date, count(*) as count").
       where("visits.created_at between ? and ?", 
-            (Time.now - num_of_days.days), (Time.now + 1) ).
+            (Date.today - num_of_days.days), (Date.today + 1) ).
       group(date_column)
-    dates = (Date.today-num_of_days..Date.today)
+    dates = (Date.today-num_of_days..Date.today).map(&:to_s)
     results = {}
     dates.each do |date|
-      visits.select { |visit| visit.date == date }.map do |visit| 
+      visits.select { |visit| visit.date.to_s == date }.map do |visit| 
         results[date] = visit.count
       end
       results[date] = 0 unless results[date]
