@@ -1,19 +1,24 @@
-%h1 Listing links
+%h1.title TinyClone
+- unless @link.nil?
+  .success
+    %code= @link.url.original
+    has been shortened to 
+    %a{:href => "/#{@link.identifier}"}
+      = "http://#{request.env["HTTP_HOST"]}/#{@link.identifier}"
+    %br
+    Go to 
+    %a{:href => "/info/#{@link.identifier}"}
+      = "http://#{request.env["HTTP_HOST"]}/info/#{@link.identifier}"
+    to get more information about this link.
+- if flash[:error]
+  .error= flash[:error]
 
-%table
-  %tr
-    %th Identifier
-    %th
-    %th
-    %th
+= render :partial => "form"
 
-  - @links.each do |link|
-    %tr
-      %td= link.identifier
-      %td= link_to 'Show', link
-      %td= link_to 'Edit', edit_link_path(link)
-      %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Link', new_link_path
+%p  
+%small copyright &copy;
+%a{:href => 'http://blog.saush.com'}
+  Chang Sau Sheong
+%p
+  %a{:href => 'http://github.com/sausheong/tinyclone'}
+    Full source code

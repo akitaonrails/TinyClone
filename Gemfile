@@ -8,7 +8,6 @@ gem 'rails', '3.0.7'
 gem 'sqlite3'
 
 gem "haml-rails", ">= 0.2"
-gem "inherited_resources", ">=1.1.2"
 
 group :development do
   gem "watchr"
