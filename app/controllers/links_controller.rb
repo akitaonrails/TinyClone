@@ -12,4 +12,9 @@ class LinksController < ApplicationController
     end
     render :action => "index"
   end
+
+  def show
+    link = Link.find(params[:id])
+    redirect_to link.url.original, :status => 301
+  end
 end

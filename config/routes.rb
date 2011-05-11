@@ -1,6 +1,7 @@
 Tinyclone2::Application.routes.draw do
   resources :links
   root :to => "links#index"
+  match "/:id" => "links#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

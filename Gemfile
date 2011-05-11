@@ -8,6 +8,8 @@ gem 'rails', '3.0.7'
 gem 'sqlite3'
 
 gem "haml-rails", ">= 0.2"
+gem "rest-client", :require => "rest_client"
+gem "xml-simple", :require => "xmlsimple"
 
 group :development do
   gem "watchr"
