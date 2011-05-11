@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Url do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should save without problems" do
+    Url.create(:original => "http://www.google.com").new_record?.should be_false
+  end
 end

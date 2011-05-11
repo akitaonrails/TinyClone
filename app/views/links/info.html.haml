@@ -1,0 +1,32 @@
+%h1.title Information
+.span-3 Original
+.span-21.last= @link.url.original  
+.span-3 Shortened
+.span-21.last
+  %a{:href => "/#{@link.identifier}"}
+    = "http://#{request.env["HTTP_HOST"]}/#{@link.identifier}"
+.span-3 Date created
+.span-21.last= @link.created_at
+.span-3 Number of visits
+.span-21.last= "#{@link.visits.size.to_s} visits"
+    
+%h2= "Number of visits in the past #{@num_of_days} days"
+- %w(7 14 21 30).each do |num_days|
+  %a{:href => "/links/#{@link.identifier}/info/#{num_days}"}
+    ="#{num_days} days "
+  |
+%p
+.span-24.last
+  %img{:src => @count_days_bar}
+
+%h2 Number of visits by country
+- %w(world usa asia europe africa middle_east south_america).each do |loc|
+  %a{:href => "/links/#{@link.identifier}/info/#{@num_of_days.to_s}/#{loc}"}
+    =loc
+  |
+%p
+.span-12
+  %img{:src => @count_country_map}
+.span-12.last
+  %img{:src => @count_country_bar}
+%p

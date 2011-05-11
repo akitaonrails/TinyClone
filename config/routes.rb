@@ -1,6 +1,11 @@
 Tinyclone2::Application.routes.draw do
-  resources :links
+  resources :links do
+    member do
+      get "info"
+    end
+  end
   root :to => "links#index"
+  match "links/:id/info(/:num_of_days(/:map))" => "links#info"
   match "/:id" => "links#show"
 
   # The priority is based upon order of creation:

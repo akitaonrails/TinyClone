@@ -7,8 +7,8 @@
       = "http://#{request.env["HTTP_HOST"]}/#{@link.identifier}"
     %br
     Go to 
-    %a{:href => "/info/#{@link.identifier}"}
-      = "http://#{request.env["HTTP_HOST"]}/info/#{@link.identifier}"
+    %a{:href => "links/#{@link.identifier}/info"}
+      = "http://#{request.env["HTTP_HOST"]}/links/#{@link.identifier}/info"
     to get more information about this link.
 - if flash[:error]
   .error= flash[:error]

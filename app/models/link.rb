@@ -6,6 +6,8 @@ class Link < ActiveRecord::Base
   belongs_to :url
   validates_presence_of :url
 
+  has_many :visits
+
   def self.shorten(address, custom = nil)
     url = Url.where(:original => address).first
     return link = url.links.first if url
