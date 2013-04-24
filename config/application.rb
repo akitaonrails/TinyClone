@@ -1,6 +1,21 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+require "rails"
+
+if defined?(Rake) && Rake.application.top_level_tasks.grep(/^(default$|test(:|$))/).any?
+  ENV['RAILS_ENV'] ||= 'test'
+end
+
+%w(
+  active_record
+  action_controller
+  sprockets
+).each do |framework|
+  begin
+    require "#{framework}/railtie"
+  rescue LoadError
+  end
+end
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.

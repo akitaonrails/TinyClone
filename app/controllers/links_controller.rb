@@ -15,7 +15,7 @@ class LinksController < ApplicationController
 
   def show
     link = Link.find(params[:id])
-    Visit.delay.register(params[:id], get_remote_ip(request.env))
+    Visit.register(params[:id], get_remote_ip(request.env))
     redirect_to link.url.original, :status => 301
   end
 

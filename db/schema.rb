@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -21,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20110511032911) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -30,24 +31,24 @@ ActiveRecord::Schema.define(:version => 20110511032911) do
   create_table "links", :id => false, :force => true do |t|
     t.string   "identifier", :null => false
     t.integer  "url_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "links", ["identifier"], :name => "index_links_on_identifier", :unique => true
 
   create_table "urls", :force => true do |t|
     t.string   "original"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "visits", :force => true do |t|
     t.string   "ip"
     t.string   "country"
     t.string   "link_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
