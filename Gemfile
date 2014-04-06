@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+ruby '2.1.0'
+
+gem 'rails', '3.2.17'
+gem "pg"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,10 +29,10 @@ group :development do
 end
 
 group :development, :test do
-  gem 'sqlite3'
   gem "rspec-rails"
 end
 
 group :production do
-  gem "mysql2"
+  gem "passenger"
+  gem "newrelic_rpm"
 end

@@ -10,7 +10,7 @@ class Visit < ActiveRecord::Base
 
   def set_country
     return if self.country
-    xml = RestClient.get "http://api.hostip.info/get_xml.php?ip=#{ip}"  
+    xml = RestClient.get "http://api.hostip.info/get_xml.php?ip=#{ip}"
     self.country = XmlSimple.xml_in(xml.to_s, { 'ForceArray' => false })['featureMember']['Hostip']['countryAbbrev']
     self.save
   end
@@ -18,7 +18,7 @@ class Visit < ActiveRecord::Base
   def self.count_days_bar(identifier,num_of_days)
     visits = count_by_date_with(identifier,num_of_days)
     data, labels = [], []
-    visits.each do |visit| 
+    visits.each do |visit|
       data << visit[1]
       labels << (visit[0] =~ /(\d+)\-(\d+)\-(\d+)/ ? "#{$3.to_i}/#{$2.to_i}" : "")
     end
@@ -27,7 +27,7 @@ class Visit < ActiveRecord::Base
 
   def self.count_country_chart(identifier,map)
     countries, count = [], []
-    count_by_country_with(identifier).each do |visit| 
+    count_by_country_with(identifier).each do |visit|
       countries << visit.country
       count << visit.count
     end
@@ -41,23 +41,24 @@ class Visit < ActiveRecord::Base
     date_column = "date(visits.created_at)" # may differ in other dbs
     visits = Link.find(identifier).visits.
       select("#{date_column} as date, count(*) as count").
-      where("visits.created_at between ? and ?", 
+      where("visits.created_at between ? and ?",
             (Date.today - num_of_days.days), (Date.today + 1) ).
       group(date_column)
     dates = (Date.today-num_of_days..Date.today).map(&:to_s)
     results = {}
     dates.each do |date|
-      visits.select { |visit| visit.date.to_s == date }.map do |visit| 
+      visits.select { |visit| visit.date.to_s == date }.map do |visit|
         results[date] = visit.count
       end
       results[date] = 0 unless results[date]
     end
-    results.sort.reverse    
+    results.sort.reverse
   end
 
   def self.count_by_country_with(identifier)
     Link.find(identifier).visits.
       select("visits.country, count(*) as count").
-      group("visits.country")
+      group("visits.country").
+      order("visits.country")
   end
 end
