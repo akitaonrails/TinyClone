@@ -41,6 +41,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    gctools (0.2.3)
     haml (4.0.5)
       tilt
     haml-rails (0.4)
@@ -132,6 +133,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  gctools
   haml-rails
   newrelic_rpm
   pg

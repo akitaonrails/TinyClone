@@ -34,5 +34,6 @@ end
 
 group :production do
   gem "unicorn"
+  gem "gctools"
   gem "newrelic_rpm"
 end
