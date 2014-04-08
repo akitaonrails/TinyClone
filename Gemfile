@@ -33,6 +33,6 @@ group :development, :test do
 end
 
 group :production do
-  gem "passenger"
+  gem "unicorn"
   gem "newrelic_rpm"
 end
