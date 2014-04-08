@@ -37,7 +37,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
-    daemon_controller (1.1.5)
+    daemon_controller (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -59,8 +59,8 @@ GEM
     mime-types (1.25.1)
     multi_json (1.9.2)
     newrelic_rpm (3.7.3.204)
-    passenger (4.0.17)
-      daemon_controller (>= 1.1.0)
+    passenger (4.0.41)
+      daemon_controller (>= 1.2.0)
       rack
       rake (>= 0.8.1)
     pg (0.15.1)
